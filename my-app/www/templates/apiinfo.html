@@ -1,0 +1,81 @@
+{% extends '__base__.html' %}
+
+{% block title %}说明{% endblock %}
+
+{% block beforehead %}
+
+{% endblock %}
+
+{% block content %}
+<div id="wmd-preview" class="wmd-preview"><div class="md-section-divider"></div><div class="md-section-divider"></div><h3 data-anchor-id="raxa" id="api文档">API文档</h3><div class="md-section-divider"></div><hr><blockquote data-anchor-id="2jpx" class="white-blockquote">
+  <p><code>POST</code>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp/api/service/codestr</p>
+</blockquote><p data-anchor-id="k6h8">请求参数：</p><table class="table table-striped-white table-bordered" data-anchor-id="zexl">
+    <caption>Headers</caption>
+    <thead>
+        <tr>
+            <th class='th-blue'>参数名称</th>
+            <th class='th-blue'>参数值</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Conent-Type</td>
+            <td>application/json</td>
+        </tr>
+    </tbody>
+</table><table class="table table-striped-white table-bordered" data-anchor-id="h0ky">
+    <caption>Body</caption>
+    <thead>
+        <tr>
+            <th class='th-blue'>参数名称</th>
+            <th class='th-blue'>参数类型</th>
+            <th class='th-blue'>示例</th>
+            <th class='th-blue'>备注</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>code1</td>
+            <td>string</td>
+            <td>'1111111111111111111'</td>
+            <td>第一份代码</td>
+        </tr>
+        <tr>
+            <td>code2</td>
+            <td>string</td>
+            <td>'111111111111111111111111'</td>
+            <td>第二份代码</td>
+        </tr>
+    </tbody>
+</table><p data-anchor-id="sid8">返回数据：</p><table class="table table-striped-white table-bordered" data-anchor-id="12nz">
+    <thead>
+        <tr>
+            <th class='th-blue'>名称</th>
+            <th class='th-blue'>类型</th>
+            <th class='th-blue'>备注</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>is_same</td>
+            <td>boolean</td>
+            <td>使用默认参数判断是否抄袭</td>
+        </tr>
+        <tr>
+            <td>sub_str</td>
+            <td>string</td>
+            <td>给出代码公共子串（已去除无关信息）</td>
+        </tr>
+        <tr>
+            <td>score1</td>
+            <td>number</td>
+            <td>winnowing参数</td>
+        </tr>
+        <tr>
+            <td>score2</td>
+            <td>number</td>
+            <td>最长公共子串占比参数</td>
+        </tr>
+    </tbody>
+</table></div>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends '__base__.html' %}
+
+{% block title %}注册{% endblock %}
+
+{% block beforehead %}
+
+<script>
+
+function validateEmail(email) {
+    var re = /^[a-z0-9\.\-\_]+\@[a-z0-9\-\_]+(\.[a-z0-9\-\_]+){1,4}$/;
+    return re.test(email.toLowerCase());
+}
+
+$(function () {
+    var vm = new Vue({
+        el: '#vm',
+        data: {
+            name: '',
+            email: '',
+            password1: '',
+            password2: ''
+        },
+        methods: {
+            submit: function (event) {
+                event.preventDefault();
+                var $form = $('#vm');
+                if (! this.name.trim()) {
+                    return $form.showFormError('请输入名字');
+                }
+                if (! validateEmail(this.email.trim().toLowerCase())) {
+                    return $form.showFormError('请输入正确的Email地址');
+                }
+                if (this.password1.length < 6) {
+                    return $form.showFormError('口令长度至少为6个字符');
+                }
+                if (this.password1 !== this.password2) {
+                    return $form.showFormError('两次输入的口令不一致');
+                }
+                var email = this.email.trim().toLowerCase();
+                $form.postJSON('/api/users', {
+                    name: this.name.trim(),
+                    email: email,
+                    passwd: CryptoJS.SHA1(email + ':' + this.password1).toString()
+                }, function (err, r) {
+                    if (err) {
+                        console.log(err);
+                        return $form.showFormError(err);
+                    }
+                    return location.assign('/home');
+                });
+            }
+        }
+    });
+    $('#vm').show();
+});
+
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="contianer blo">
+        <legend>欢迎注册！</legend>
+        <form id="vm" v-on="submit:submit" class="form-horizontal center" role="form">
+            <div class="alert alert-danger hidden"></div>
+            <div class="form-group">
+                <label class="col-lg-1 control-label" for="name"><span class="glyphicon glyphicon-user"></span></label>
+                <div class="col-lg-5">
+                    <input id="name" v-model="name" type="text" placeholder="名字" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-1 control-label" for="email"><i class="glyphicon glyphicon-envelope"></i></label>
+                <div class="col-lg-5">
+                    <input id="email" v-model="email" type="text"placeholder="xxxxxx@example.com" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-1 control-label" for="psw1"><i class="glyphicon glyphicon-lock"></i></label>
+                <div class="col-lg-5">
+                    <input id="psw1" v-model="password1" type="password" placeholder="输入密码" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-1 control-label" for="psw2"><i class="glyphicon glyphicon-lock"></i></label>
+                <div class="col-lg-5">
+                    <input id="psw2" v-model="password2" type="password" placeholder="重复密码" class="form-control">
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="form-group col-lg-4">
+                <button type="submit" class="btn btn-primary btn-lg"><i class=" glyphicon glyphicon-send"></i>注册</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,223 @@
+    * {
+        font-family: "Arial Verdana sans-serif";
+    }
+    
+    ol {
+        padding: 10px 0 0 53px;
+    }
+    
+    ul {
+        margin-left: 10px;
+    }
+    
+    ul li {
+        list-style: none;
+    }
+    
+    table {
+        margin-left: 10px;
+        width: 100%;
+    }
+    
+    th {
+        background-color: #66CCCC;
+        color: black;
+    }
+
+    .th-black{
+        background-color : #000000;
+        color: white;
+        border:1px white solid;
+    }
+    .th-blue {
+        background-color: #B0C4DE;
+        color: black;
+    }
+
+    tbody td {
+        border: 1px solid #CCCCCC;
+    }
+    
+    tfoot tr:last-child {
+        background-color: #CCCCCC;
+        color: #333;
+    }
+    
+    .header,
+    .footer {
+        position: relative;
+        background-color: #333;
+    }
+    
+    .footer {
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        color: white;
+    }
+    
+    .header h1 {
+        color: white;
+    }
+    
+    .tnav{
+        height:99px;
+        opacity:0.7;
+        padding:40px 10px 10px 10px;
+        background-color: #EEEEEE;
+    }
+    .nav-1{
+        background-image: url('../img/background.jpg');
+        height:100px;
+        width:100%;
+        margin-bottom: 20px;
+        
+        /*border:1px solid red;*/
+    }
+
+    .nav-links {
+        float:left;
+        color:black;
+    }
+    
+    .nav-links li {
+        display: inline;
+    }
+    
+    .nav-links a {
+        text-decoration: none;
+    }
+    
+    .nav-links a:visited {
+        color: #A6A4A9;
+    }
+    
+    .nav-links a:hover,
+    .nav-links a:active {
+        color: white;
+    }
+    
+    .article {
+        margin: 25px;
+        padding: 25px;
+        box-shadow: 10px 10px 5px #888888;
+        background-color: white;
+    }
+
+    .blo {
+        margin: 25px;
+        padding: 25px;
+        overflow: auto;
+        box-shadow: 10px 10px 5px #888888;
+        background-color: white;
+    }
+    
+    .article h2,
+    .article h3,
+    .article span,
+    .article p {
+        padding: 10px;
+    }
+    
+    .article h3 {
+        color: #706B71;
+        font-size: 1.1rem;
+    }
+    
+    .article span {
+        color: #939393;
+        font-size: .8rem;
+    }
+    
+    .img {
+        display: inline-block;
+        border: 1px solid #eee;
+        padding: 10px;
+    }
+    
+    .right-table {
+        margin-left: 25%;
+    }
+    
+    .right-table li {
+        padding-top: 10px;
+    }
+    
+    .right-table li label,
+    h5 {
+        display: inline-block;
+        width: 130px;
+        text-align: right;
+    }
+    
+    .right-table .uniqe {
+        width: 20px;
+    }
+    
+    alert,confirm {
+        display: inline-block;
+        margin-left: -27%;
+        background-color: #3355D0;
+        color: white;
+        width: 125%;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 15px;
+    }
+    
+    .hint {
+        display: block;
+        margin-left: 13.5%;
+    }
+
+    .thr{
+        border:1px dashed #DDAA00;
+    }
+    .center{
+        padding-top:50px;
+        padding-left:320px;
+        /*border:1px solid red;*/
+    }
+
+    .tpanel{
+        margin: 25px;
+        box-shadow: 10px 10px 1px inset white;
+        background-color: white;
+    }
+
+    .th3{
+       font-size:18px;
+       padding:20px 0px;
+    }
+
+    .list{
+       padding-left:0px;
+    }
+    .comment{
+        background-color: #F5FFFA;
+        margin:20px 20px;
+        pading:20px 20px;
+        border:1px solid #F5FFFA;
+    }
+    .comment-header{
+        margin:20px 20px;
+        pading:20px 20px;
+    }
+    .comment-body{
+        margin:50px 20px;
+        pading:50px 20px;
+    }
+
+    .upload{
+        margin:15px 15px;
+        float:left;
+        display:inline;
+    }
+
+    .fc{
+    }
+
+    #ad{
+        color:black;
+        display:block;
+    }

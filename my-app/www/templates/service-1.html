@@ -1,0 +1,57 @@
+{% extends '__base__.html' %}
+
+{% block title %}测试{% endblock %}
+
+{% block beforehead %}
+
+<script>
+$(function() {
+    var vmAuth = new Vue({
+        el: '#vm',
+        data: {
+            code1: '',
+            code2: ''
+        },
+        methods: {
+            submit: function(event) {
+                event.preventDefault();
+                var 
+                    $form = $('#vm');
+                $form.postJSON('/api/service/codestr', this.$data, function(err, result) {
+                    if(!err){
+                        if(result.is_same)
+                            return $form.showFormSuccess('【判断结果:相似 】'+'（分数一：'+result.score1+'）  （分数二：'+result.score2+'）');
+                        else
+                            return $form.showFormError('【判断结果:不相似 】'+'（分数一：'+result.score1+'）   (分数二：'+result.score2+'）');
+                    }
+                });
+            }
+        }
+    });
+});
+</script>
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+        <form id="vm" v-on="submit:submit" class="form-horizontal" role="form">
+            <div class="row">
+                <div class="alert alert-danger form-group hidden"></div>
+                <div class="alert alert-info form-group hidden"></div>
+            </div>
+            <div class="row">
+            <button type="submit" class="btn btn-info btn-lg btn-block"><span class="glyphicon glyphicon-send"></span></button>
+            </div>
+            <br/><br/>
+            <div class='row'>
+                <div class="col-lg-6">
+            		<textarea id="code1" v-model="code1" class="form-control" rows="50"></textarea>
+                </div>
+                <div class="col-lg-6">
+           		 	<textarea id="code2" v-model="code2" class="form-control" rows="50"></textarea>
+                </div>
+        	</div>
+        </form>
+</div>
+{% endblock %}

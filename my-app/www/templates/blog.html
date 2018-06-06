@@ -1,0 +1,104 @@
+{% extends '__base__.html' %}
+
+{% block title %}{{ blog.name }}{% endblock %}
+
+{% block beforehead %}
+
+<script>
+
+var comment_url = '/api/blogs/{{ blog.id }}/comments';
+
+$(function () {
+    var $form = $('#form-comment');
+    $form.submit(function (e) {
+        e.preventDefault();
+        $form.showFormError('');
+        var content = $form.find('textarea').val().trim();
+        if (content==='') {
+            return $form.showFormError('请输入评论内容！');
+        }
+        $form.postJSON(comment_url, { content: content }, function (err, result) {
+            if (err) {
+                return $form.showFormError(err);
+            }
+            refresh();
+        });
+    });
+});
+</script>
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="col-lg-9">
+        <article class="article">
+            <h2>{{ blog.name }}</h2>
+            <p class="article-meta">发表于{{ blog.created_at|datetime }}</p>
+            <p>{{ blog.html_content|safe }}</p>
+        </article>
+        <hr>
+
+    {% if __user__ %}
+        <h3>发表评论</h3>
+
+        <article class="comment">
+            <header class="comment-header">
+                <img class="comment-avatar border-circle" width="50" height="50" src="/static/img/icon/1.jpeg">
+                <h4 class="comment-title">{{ __user__.name }}</h4>
+            </header>
+            <div class="comment-body">
+                <form id="form-comment" class="form">
+                    <div class="alert alert-danger hidden"></div>
+                    <div class="form-row">
+                        <textarea rows="6" placeholder="说点什么吧" style="width:100%;resize:none;margin-bottom:10px" class="form-control"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn btn-default"><i class="icon-comment"></i> 发表评论</button>
+                    </div>
+                </form>
+            </div>
+        </article>
+
+        <hr class="article-divider">
+    {% endif %}
+
+        <h3>最新评论</h3>
+
+        <ul class="comment-list">
+            {% for comment in comments %}
+            <li>
+                <article class="comment">
+                    <header class="comment-header">
+                        <img class="comment-avatar border-circle" width="50" height="50" src="/static/img/icon/1.jpeg">
+                        <h4 class="comment-title">{{ comment.user_name }} {% if comment.user_id==blog.user_id %}(作者){% endif %}</h4>
+                        <p class="comment-meta">{{ comment.created_at|datetime }}</p>
+                    </header>
+                    <div class="comment-body">
+                        {{ comment.html_content|safe }}
+                    </div>
+                </article>
+            </li>
+            {% else %}
+            <p>还没有人评论...</p>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    <div class="col-lg-3">
+        <div class="panel panel-box">
+            <div class="text-center">
+                <img class="border-circle" width="120" height="120" src="/static/img/icon/1.jpeg">
+                <h3>{{ blog.user_name }}</h3>
+            </div>
+        </div>
+        <div class="panel panel-header">
+            <h3 class="panel-title th3">友情链接</h3>
+            <ul class="list uk-list-line list">
+                <li><i class="glyphicon glyphicon-thumbs-up"></i> <a href="http://huasacm.cn" target="_blank">HUASOJ</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
